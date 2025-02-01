@@ -6,7 +6,7 @@ const path = require('path');
 const http = require('http');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
-require('dotenv').config({patch: './.env'});
+require('dotenv').config({ path: './.env' });
 
 const adRoutes = require('./routes/ads');
 const authRoutes = require('./routes/auth');
@@ -18,16 +18,12 @@ const server = http.createServer(app);
 
 app.use(express.json());
 app.use(cors());
-app.use(express.static(path.join(__dirname, '../client/build')));
 
 mongoose
   .connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('Connected to MongoDB'))
   .catch(err => console.error('MongoDB connection error:', err));
 
-// app.get('*', (req, res) => {
-//     res.sendFile(path.join(__dirname, '/client/build/index.html'));
-// });
 
 app.use(
     session({
@@ -48,6 +44,13 @@ app.use(
 
 app.use('/api/ads', adRoutes);
 app.use('/auth', authRoutes);
+
+app.use(express.static(path.join(__dirname, '../client/build')));
+
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/build/index.html'));
+});
 
 app.use((req, res) => {
     res.status(404).json({ message: 'Not found...' });

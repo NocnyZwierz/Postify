@@ -1,0 +1,45 @@
+.nav {
+  background-color: #00b3098d;
+  padding: 10px 0;
+
+  img {
+    height: 50px;
+    width: 40px;
+  }
+
+  .navContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    .menuButton {
+      background-color: transparent;
+      border: none;
+      font-size: 28px;
+      color: orange;
+      cursor: pointer;
+      transition: transform 0.2s ease-in-out;
+
+      &:hover {
+        transform: scale(1.1);
+        color: white;
+      }
+    }
+  }
+
+  .navLinks {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+
+    &:hover {
+      background-color: rgba(247, 7, 7, 0.822);
+    }
+
+
+  }
+}
