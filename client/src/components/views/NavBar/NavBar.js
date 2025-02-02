@@ -26,6 +26,7 @@ const NavBar = () => {
             </Nav.Link>
             <Nav.Link
               as={NavLink}
+              to="/logout"
               className={({ isActive }) =>
                 isActive ? style.linkActive : undefined
               }

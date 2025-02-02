@@ -10,6 +10,7 @@ import Shearch from "./components/pages/Search/Search";
 import Login from "./components/pages/Login/Login";
 import Register from "./components/pages/Register/Register";
 import NotFound from "./components/pages/NotFound/NotFound";
+import Logout from "./components/pages/Logout/Logout";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="search/:searchPhrase" element={<Shearch />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/logout" element={<Logout />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
