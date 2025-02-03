@@ -14,9 +14,9 @@ export const logOut = () => ({
 const usersReducer = (statePart = {}, action) => {
     switch (action.type) {
         case LOG_IN:
-            return action.payload;
+            return { ...statePart, user: action.payload };
         case LOG_OUT:
-            return {};
+            return { ...statePart, user: {} };
         default:
             return statePart;
     }

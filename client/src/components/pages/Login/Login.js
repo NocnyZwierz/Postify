@@ -9,7 +9,7 @@ const Login = () => {
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
   const [status, setStatus] = useState(null);
-  const dispach = useDispatch();
+  const dispatch = useDispatch();
 
   const onHandler = async (e) => {
     e.preventDefault();
@@ -30,7 +30,7 @@ const Login = () => {
 
       if (res.status === 200) {
         setStatus("success");
-        dispach(logIn({login}))
+        dispatch(logIn(login));
         console.error("Login error:", data.message);
       } else if (res.status === 400) {
         setStatus("clientError");
