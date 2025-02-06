@@ -5,7 +5,7 @@ $button-bg: #00b3098d;
 $button-hover: #009708;
 $text-color: #333;
 
-.form-container {
+.form_container {
   max-width: 400px;
   margin: 50px auto;
   padding: 20px;
@@ -46,7 +46,7 @@ $text-color: #333;
       }
     }
 
-    input[type='file'] {
+    input[type="file"] {
       padding: 5px;
     }
   }

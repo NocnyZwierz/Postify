@@ -1,0 +1,48 @@
+$primary-color: #007bff;
+$primary-hover: #0056b3;
+$border-color: #ced4da;
+$input-bg: #ffffff;
+
+.headerContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 0;
+  background: #f8f9fa;
+}
+
+.searchForm {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.searchInput {
+  flex-grow: 1;
+  padding: 10px;
+  border: 1px solid $border-color;
+  border-radius: 5px;
+  font-size: 16px;
+  background: $input-bg;
+  transition: border-color 0.3s;
+
+  &:focus {
+    border-color: $primary-color;
+    outline: none;
+    box-shadow: 0 0 5px rgba($primary-color, 0.5);
+  }
+}
+
+.searchButton {
+  padding: 10px 15px;
+  font-size: 16px;
+  border-radius: 5px;
+  transition: background 0.3s, transform 0.2s;
+
+  &:hover {
+    background: $primary-hover;
+    transform: scale(1.05);
+  }
+}

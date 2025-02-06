@@ -54,8 +54,8 @@ exports.loginUser = async (req, res) => {
     if (!user) {
       return res.status(400).json({ message: "Invalid login or password" });
     }
-    const isPasswordValid = await bcryptjs.compare(password, user.password);
 
+    const isPasswordValid = await bcryptjs.compare(password, user.password);
     if (!isPasswordValid) {
       return res.status(400).json({ message: "Invalid login or password" });
     }
@@ -64,19 +64,45 @@ exports.loginUser = async (req, res) => {
     req.session.save((err) => {
       if (err) console.error("Session save error:", err);
     });
-    return res.status(200).json({ message: "Logged in successfully" });
+
+    return res.status(200).json({ 
+      message: "Logged in successfully",
+      user: {
+        id: user._id,
+        login: user.login,
+        avatar: user.avatar,
+        phoneNumber: user.phoneNumber
+      }
+    });
+
   } catch (err) {
-    return res
-      .status(500)
-      .json({ message: "Error logging in", error: err.message });
+    return res.status(500).json({ message: "Error logging in", error: err.message });
   }
 };
 
 exports.getUser = async (req, res) => {
-  res.send("Logged in");
+  if (!req.session.user) {
+    return res.status(401).json({ message: "Not logged in" });
+  }
+
+  const user = await User.findById(req.session.user.id).select("-password");
+
+  if (!user) {
+    return res.status(404).json({ message: "User not found" });
+  }
+
+  res.status(200).json({ user });
 };
 
+
 exports.logoutUser = (req, res) => {
-  req.session.destroy();
-  res.json({ message: "Logged out successfully" });
+  req.session.destroy((err) => {
+    if (err) {
+      console.error("Błąd przy usuwaniu sesji:", err);
+      return res.status(500).json({ message: "Error logging out" });
+    }
+
+    res.clearCookie("connect.sid");
+    return res.status(200).json({ message: "Logged out successfully" });
+  });
 };

@@ -23,26 +23,26 @@ const Register = () => {
       method: "POST",
       body: fd,
     };
-    setStatus('loading');
+    setStatus("loading");
     try {
       const res = await fetch(`${API_URL}auth/register`, option);
-  
+
       if (res.status === 201) {
-        setStatus('success');
+        setStatus("success");
       } else if (res.status === 400) {
-        setStatus('clientError');
+        setStatus("clientError");
       } else if (res.status === 409) {
-        setStatus('loginError');
+        setStatus("loginError");
       } else {
-        setStatus('serverError');
+        setStatus("serverError");
       }
     } catch (error) {
-      setStatus('serverError');
+      setStatus("serverError");
     }
   };
 
   return (
-    <div className={style["form-container"]}>
+    <div className={style.form_container}>
       <Form onSubmit={onHandler}>
         <h1>Sign up</h1>
 

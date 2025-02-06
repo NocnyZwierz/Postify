@@ -4,12 +4,14 @@ import { useState } from "react";
 import { API_URL } from "../../../config";
 import { useDispatch } from "react-redux";
 import { logIn } from "../../../redux/userRedux";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
   const [status, setStatus] = useState(null);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const onHandler = async (e) => {
     e.preventDefault();
@@ -29,9 +31,9 @@ const Login = () => {
       const data = await res.json();
 
       if (res.status === 200) {
+        dispatch(logIn(data.user));
         setStatus("success");
-        dispatch(logIn(login));
-        console.error("Login error:", data.message);
+        navigate(`/`);
       } else if (res.status === 400) {
         setStatus("clientError");
       } else {
@@ -45,13 +47,6 @@ const Login = () => {
     <div className={style["form-container"]}>
       <Form onSubmit={onHandler}>
         <h1>Sign in</h1>
-
-        {status === "success" && (
-          <Alert variant="success">
-            <Alert.Heading>Success!</Alert.Heading>
-            <p>You have been successfully logged in!</p>
-          </Alert>
-        )}
 
         {status === "serverError" && (
           <Alert variant="danger">

@@ -1,0 +1,91 @@
+$primary-color: #007bff;
+$primary-hover: #0056b3;
+$background-color: #f8f9fa;
+$card-bg: #ffffff;
+$card-border: #dee2e6;
+$text-color: #333;
+$shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+$border-radius: 10px;
+
+.homeContainer {
+  max-width: 1200px;
+  margin: 40px auto;
+  text-align: center;
+}
+
+.heading {
+  font-size: 28px;
+  font-weight: bold;
+  color: $text-color;
+  margin-bottom: 30px;
+}
+
+.adsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  max-width: 900px;
+  margin: 0 auto;
+  gap: 20px;
+  justify-content: center;
+
+  @media (max-width: 900px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 600px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+.adCard {
+  width: 100%;
+  background: $card-bg;
+  border: 1px solid $card-border;
+  border-radius: $border-radius;
+  box-shadow: $shadow;
+  transition: transform 0.2s ease-in-out;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.adImage {
+  height: 180px;
+  object-fit: cover;
+  border-top-left-radius: $border-radius;
+  border-top-right-radius: $border-radius;
+}
+
+.cardBody {
+  padding: 15px;
+}
+
+.adTitle {
+  font-size: 20px;
+  font-weight: bold;
+  color: $text-color;
+}
+
+.adLocation {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.moreInfoButton {
+  width: 100%;
+  padding: 10px;
+  background: $primary-color;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  transition: background 0.3s, transform 0.2s;
+
+  &:hover {
+    background: $primary-hover;
+    transform: scale(1.03);
+  }
+}

@@ -1,0 +1,98 @@
+.adCard {
+  max-width: 600px;
+  margin: 20px auto;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  overflow: hidden;
+
+  .adImage {
+    height: 300px;
+    object-fit: cover;
+    border-bottom: 2px solid #f0f0f0;
+  }
+
+  .adTitle {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+  }
+
+  .adText {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 5px;
+  }
+
+  .adDescription {
+    font-size: 1.1rem;
+    color: #444;
+    line-height: 1.5;
+    margin: 15px 0;
+  }
+
+  .sellerCard {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+  }
+
+  .sellerTitle {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .sellerInfo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .sellerAvatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid #ddd;
+  }
+
+  .sellerDetail {
+    font-size: 1rem;
+    color: #555;
+  }
+
+  .editButton {
+    background-color: #007bff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: 0.3s;
+
+    &:hover {
+      background-color: #0056b3;
+    }
+  }
+
+  .deleteButton {
+    background-color: #dc3545;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: 0.3s;
+
+    &:hover {
+      background-color: #c82333;
+    }
+  }
+
+  .loading {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #777;
+    margin-top: 20px;
+  }
+}

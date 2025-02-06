@@ -1,0 +1,23 @@
+$footer-bg: #343a40;
+$text-color: #ffffff;
+$padding: 15px;
+$border-top: 1px solid rgba(255, 255, 255, 0.2);
+
+.footer {
+  background: $footer-bg;
+  color: $text-color;
+  text-align: center;
+  padding: $padding;
+  border-top: $border-top;
+  position: fixed;
+  bottom: 0;
+  width: 500px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 8px 8px 0 0;
+}
+
+.footerText {
+  margin: 0;
+  font-size: 14px;
+}

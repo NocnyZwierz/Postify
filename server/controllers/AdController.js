@@ -1,5 +1,7 @@
 const Ad = require("../models/Ad.model");
 const sanitize = require("mongo-sanitize");
+const fs = require("fs");
+const path = require("path");
 
 exports.getAllAds = async (req, res) => {
   try {
@@ -34,8 +36,10 @@ exports.getAdById = async (req, res) => {
       "seller",
       "login avatar phoneNumber"
     );
+
     if (!ad) return res.status(404).json({ message: "Ad not found" });
-    res.json(ad);
+
+    res.status(200).json(ad);
   } catch (err) {
     res.status(500).json({ message: "Error fetching ad", error: err.message });
   }
@@ -48,7 +52,7 @@ exports.createAd = async (req, res) => {
       content: sanitize(req.body.content),
       price: sanitize(req.body.price),
       location: sanitize(req.body.location),
-      image: req.file ? `/uploads/${req.file.filename}` : null,
+      image: req.file ? `${req.file.filename}` : null,
       seller: req.session.user.id,
     });
 
@@ -88,7 +92,23 @@ exports.deleteAd = async (req, res) => {
     if (ad.seller.toString() !== req.session.user.id) {
       return res.status(403).json({ message: "Unauthorized" });
     }
+    if (ad.image) {
+      const imagePath = path.join(__dirname, "..", "uploads", "public", ad.image);
 
+      fs.access(imagePath, fs.constants.F_OK, (err) => {
+        if (!err) {
+          fs.unlink(imagePath, (unlinkErr) => {
+            if (unlinkErr) {
+              console.error("Błąd usuwania pliku:", unlinkErr);
+            } else {
+              console.log("Plik został usunięty:", imagePath);
+            }
+          });
+        } else {
+          console.warn("Plik nie istnieje:", imagePath);
+        }
+      });
+    }
     await ad.deleteOne();
     res.json({ message: "Ad deleted" });
   } catch (err) {
